@@ -78,7 +78,7 @@ class Cookie_Notice {
 			'translate'						=> true,
 			'deactivation_delete'			=> 'no'
 		),
-		'version'							=> '1.2.43'
+		'version'							=> '1.2.42'
 	);
 	private $positions 			= array();
 	private $styles 			= array();
