@@ -56,7 +56,8 @@ class Cookie_Notice {
 //            'see_more'						=> 'no',
             'see_more'						=> 'yes',
 			'link_target'					=> '_blank',
-			'time'							=> 'month',
+//            'time'							=> 'month',
+            'time'							=> 'year',
 			'hide_effect'					=> 'fade',
 			'on_scroll'						=> false,
 			'on_scroll_offset'				=> 100,
@@ -67,7 +68,7 @@ class Cookie_Notice {
 			),
 			'see_more_opt' => array(
 //                'text'						=> '',
-                'text'						=> 'Our privacy policy TEST',
+                'text'						=> 'Our privacy policy',
 				'link_type'					=> 'custom',
 				'id'						=> 'empty',
 //                'link'						=> ''
@@ -77,7 +78,7 @@ class Cookie_Notice {
 			'translate'						=> true,
 			'deactivation_delete'			=> 'no'
 		),
-		'version'							=> '1.2.42'
+		'version'							=> '1.2.43'
 	);
 	private $positions 			= array();
 	private $styles 			= array();
@@ -181,7 +182,7 @@ class Cookie_Notice {
 			$this->options['general']['translate'] = false;
 
 //            $this->options['general']['message_text'] = __( 'We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.', 'cookie-notice' );
-            $this->options['general']['message_text'] = __( 'We use cookies to improve our experience on our websites.<br/> By continuing to use this site, you are signalling that you accept our cookie use.<br/>', 'cookie-notice' );
+            $this->options['general']['message_text'] = __( 'We use cookies to improve your experience on our websites. By continuing to use this site, you are signalling that you accept our cookie use.<br/><br/>', 'cookie-notice' );
 			$this->options['general']['accept_text'] = __( 'Ok', 'cookie-notice' );
 			$this->options['general']['refuse_text'] = __( 'No', 'cookie-notice' );
 //            $this->options['general']['see_more_opt']['text'] = __( 'Read more', 'cookie-notice' );
