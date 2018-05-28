@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Cookie Notice
-Description: Cookie Notice allows you to elegantly inform users that your site uses cookies and to comply with the EU cookie law GDPR regulations.
-Version: 1.2.43
-Author: dFactory
-Author URI: http://www.dfactory.eu/
+Plugin Name: Cookie Notice - OERu version
+Description: Cookie Notice allows you to elegantly inform users that your site uses cookies and to comply with the EU cookie law regulations.
+Version: 1.2.42
+Author: dFactory, modified by the OER Foundation
+Author URI: http://www.dfactory.eu/ and https://oeru.org
 Plugin URI: http://www.dfactory.eu/plugins/cookie-notice/
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
@@ -43,10 +43,11 @@ class Cookie_Notice {
 	 */
 	private $defaults = array(
 		'general' => array(
-			'position'						=> 'bottom',
+//            'position'						=> 'bottom',
+            'position'						=> 'top',
 			'message_text'					=> '',
-			'css_style'						=> 'bootstrap',
-			'css_class'						=> 'button',
+//            'css_style'						=> 'bootstrap',
+            'css_style'						=> 'wp-default',
 			'accept_text'					=> '',
 			'refuse_text'					=> '',
 			'refuse_opt'					=> 'no',
@@ -56,9 +57,11 @@ class Cookie_Notice {
 			'revoke_cookies_opt'			=> 'automatic',
 			'revoke_text'					=> '',
 			'redirection'					=> false,
-			'see_more'						=> 'no',
+//            'see_more'						=> 'no',
+            'see_more'						=> 'yes',
 			'link_target'					=> '_blank',
-			'time'							=> 'month',
+//            'time'							=> 'month',
+            'time'							=> 'year',
 			'hide_effect'					=> 'fade',
 			'on_scroll'						=> false,
 			'on_scroll_offset'				=> 100,
@@ -67,11 +70,12 @@ class Cookie_Notice {
 				'bar'							=> '#000'
 			),
 			'see_more_opt' => array(
-				'text'						=> '',
-				'link_type'					=> 'page',
+//                'text'						=> '',
+                'text'						=> 'Our privacy policy',
+				'link_type'					=> 'custom',
 				'id'						=> 'empty',
-				'link'						=> '',
-				'sync'						=> false
+//                'link'						=> ''
+                'link'						=> 'https://oeru.org/privacy'
 			),
 			'script_placement'				=> 'header',
 			'translate'						=> true,
@@ -183,11 +187,13 @@ class Cookie_Notice {
 		if ( $this->options['general']['translate'] === true ) {
 			$this->options['general']['translate'] = false;
 
-			$this->options['general']['message_text'] = __( 'We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.', 'cookie-notice' );
+                        //  $this->options['general']['message_text'] = __( 'We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.', 'cookie-notice' );
+                        $this->options['general']['message_text'] = __( 'We use cookies to improve your experience on our websites. By continuing to use this site, you are signalling that you accept our cookie use.<br/><br/>', 'cookie-notice' );
 			$this->options['general']['accept_text'] = __( 'Ok', 'cookie-notice' );
 			$this->options['general']['refuse_text'] = __( 'No', 'cookie-notice' );
-			$this->options['general']['revoke_text'] = __( 'Revoke Cookies', 'cookie-notice' );
-			$this->options['general']['see_more_opt']['text'] = __( 'Read more', 'cookie-notice' );
+                        $this->options['general']['revoke_text'] = __( 'Revoke Cookies', 'cookie-notice' );
+                        //  $this->options['general']['see_more_opt']['text'] = __( 'Read more', 'cookie-notice' );
+                        $this->options['general']['see_more_opt']['text'] = __( 'Our privacy policy', 'cookie-notice' );
 
 			update_option( 'cookie_notice_options', $this->options['general'] );
 		}
