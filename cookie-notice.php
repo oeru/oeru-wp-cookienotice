@@ -2,7 +2,7 @@
 /*
 Plugin Name: Cookie Notice - OERu version
 Description: Cookie Notice allows you to elegantly inform users that your site uses cookies and to comply with the EU cookie law regulations.
-Version: 1.2.42
+Version: 1.2.43
 Author: dFactory, modified by the OER Foundation
 Author URI: http://www.dfactory.eu/ and https://oeru.org
 Plugin URI: http://www.dfactory.eu/plugins/cookie-notice/
