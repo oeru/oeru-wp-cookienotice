@@ -43,8 +43,7 @@ class Cookie_Notice {
 	 */
 	private $defaults = array(
 		'general' => array(
-//            'position'						=> 'bottom',
-            'position'						=> 'top',
+            'position'						=> 'bottom',
 			'message_text'					=> '',
 //            'css_style'						=> 'bootstrap',
             'css_style'						=> 'wp-default',
@@ -188,7 +187,7 @@ class Cookie_Notice {
 			$this->options['general']['translate'] = false;
 
                         //  $this->options['general']['message_text'] = __( 'We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.', 'cookie-notice' );
-                        $this->options['general']['message_text'] = __( 'We use cookies to improve your experience on our websites. By continuing to use this site, you are signalling that you accept our cookie use.<br/><br/>', 'cookie-notice' );
+                        $this->options['general']['message_text'] = __( 'We use cookies to improve your experience on OERu websites. By continuing to use this site, you are signalling that you accept our cookie use.<br/><br/>', 'cookie-notice' );
 			$this->options['general']['accept_text'] = __( 'Ok', 'cookie-notice' );
 			$this->options['general']['refuse_text'] = __( 'No', 'cookie-notice' );
                         $this->options['general']['revoke_text'] = __( 'Revoke Cookies', 'cookie-notice' );
