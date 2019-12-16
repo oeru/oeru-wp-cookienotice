@@ -105,7 +105,7 @@ class Cookie_Notice {
 			'general' => array_merge( $this->defaults['general'], get_option( 'cookie_notice_options', $this->defaults['general'] ) )
 		);
 
-		if ( ! isset( $this->options['general']['see_more_opt']['sync'] ) )
+		if ( ! isset( $this->options['general']['see_more_opt']['sync'] ) && isset($this->defaults['general']['see_more_opt']['sync']) )
 			$this->options['general']['see_more_opt']['sync'] = $this->defaults['general']['see_more_opt']['sync'];
 
 		// actions
@@ -140,7 +140,7 @@ class Cookie_Notice {
 			'wp-default' 		=> __( 'WordPress', 'cookie-notice' ),
 			'bootstrap'	 		=> __( 'Bootstrap', 'cookie-notice' )
 		);
-		
+
 		$this->revoke_opts = array(
 			'automatic'	 		=> __( 'Automatic', 'cookie-notice' ),
 			'manual' 			=> __( 'Manual', 'cookie-notice' )
@@ -335,7 +335,7 @@ class Cookie_Notice {
 
 	/**
 	 * Options page output.
-	 * 
+	 *
 	 * @return mixed
 	 */
 	public function options_page() {
@@ -353,7 +353,7 @@ class Cookie_Notice {
 						<p class="inner">' . sprintf( __( '<a href="%s" target="_blank">Rate it 5</a> on WordPress.org', 'cookie-notice' ), 'https://wordpress.org/support/plugin/cookie-notice/reviews/?filter=5' ) . '<br />' .
 						sprintf( __( 'Blog about it & link to the <a href="%s" target="_blank">plugin page</a>.', 'cookie-notice' ), 'https://dfactory.eu/plugins/cookie-notice?utm_source=cookie-notice-settings&utm_medium=link&utm_campaign=blog-about' ) . '<br />' .
 						sprintf( __( 'Check out our other <a href="%s" target="_blank">WordPress plugins</a>.', 'cookie-notice' ), 'https://dfactory.eu/plugins/?utm_source=cookie-notice-settings&utm_medium=link&utm_campaign=other-plugins' ) . '
-						</p>    
+						</p>
 						<hr />
 						<p class="df-link inner">Created by <a href="https://dfactory.eu/?utm_source=cookie-notice-settings&utm_medium=link&utm_campaign=created-by" target="_blank" title="dFactory - Quality plugins for WordPress"><img src="' . plugins_url( '/images/logo-dfactory.png', __FILE__ ) . '" title="dFactory - Quality plugins for WordPress" alt="dFactory - Quality plugins for WordPress" /></a></p>
 					</div>
@@ -362,7 +362,7 @@ class Cookie_Notice {
 
 		settings_fields( 'cookie_notice_options' );
 		do_settings_sections( 'cookie_notice_options' );
-		
+
 		echo '
 				<p class="submit">';
 		submit_button( '', 'primary', 'save_cookie_notice_options', false );
@@ -750,7 +750,7 @@ class Cookie_Notice {
 	public function cn_colors() {
 		echo '
 		<fieldset>';
-		
+
 		foreach ( $this->colors as $value => $label ) {
 			$value = esc_attr( $value );
 
@@ -759,14 +759,14 @@ class Cookie_Notice {
 				<input class="cn_color" type="text" name="cookie_notice_options[colors][' . $value . ']" value="' . esc_attr( $this->options['general']['colors'][$value] ) . '" />' .
 			'</div>';
 		}
-		
+
 		echo '
 		</fieldset>';
 	}
 
 	/**
 	 * Validate options.
-	 * 
+	 *
 	 * @param array $input
 	 * @return array
 	 */
@@ -820,7 +820,7 @@ class Cookie_Notice {
 
 			// hide effect
 			$input['hide_effect'] = sanitize_text_field( isset( $input['hide_effect'] ) && in_array( $input['hide_effect'], array_keys( $this->effects ) ) ? $input['hide_effect'] : $this->defaults['general']['hide_effect'] );
-			
+
 			// on scroll
 			$input['on_scroll'] = (bool) isset( $input['on_scroll'] ) ? 'yes' : 'no';
 
@@ -862,11 +862,11 @@ class Cookie_Notice {
 					do_action( 'wpml_register_single_string', 'Cookie Notice', 'Custom link', $input['see_more_opt']['link'] );
 			}
 		} elseif ( isset( $_POST['reset_cookie_notice_options'] ) ) {
-			
+
 			$input = $this->defaults['general'];
 
 			add_settings_error( 'reset_cookie_notice_options', 'reset_cookie_notice_options', __( 'Settings restored to defaults.', 'cookie-notice' ), 'updated' );
-			
+
 		}
 
 		return $input;
@@ -874,7 +874,7 @@ class Cookie_Notice {
 
 	/**
 	 * Cookie notice output.
-	 * 
+	 *
 	 * @return mixed
 	 */
 	public function add_cookie_notice() {
@@ -936,7 +936,7 @@ class Cookie_Notice {
 
 	/**
 	 * Check if cookies are accepted.
-	 * 
+	 *
 	 * @return bool
 	 */
 	public static function cookies_accepted() {
@@ -961,7 +961,7 @@ class Cookie_Notice {
 
 	/**
 	 * Add links to support forum.
-	 * 
+	 *
 	 * @param array $links
 	 * @param string $file
 	 * @return array
@@ -978,7 +978,7 @@ class Cookie_Notice {
 
 	/**
 	 * Add links to settings page.
-	 * 
+	 *
 	 * @param array $links
 	 * @param string $file
 	 * @return array
@@ -1052,7 +1052,7 @@ class Cookie_Notice {
 		wp_enqueue_script(
 			'cookie-notice-admin', plugins_url( 'js/admin' . ( ! ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '.min' : '' ) . '.js', __FILE__ ), array( 'jquery', 'wp-color-picker' ), $this->defaults['version']
 		);
-		
+
 		wp_localize_script(
 			'cookie-notice-admin', 'cnArgs', array(
 				'resetToDefaults'	=> __( 'Are you sure you want to reset these settings to defaults?', 'cookie-notice' )
